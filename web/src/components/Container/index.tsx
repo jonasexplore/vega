@@ -4,9 +4,9 @@ export const Container = ({ children }: any) => (
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      height: "100vh",
       width: "100%",
       flexDirection: "column",
+      marginTop: "32px",
     }}
   >
     {children}
