@@ -1,5 +1,5 @@
 const env = {
-  baseUrl: process.env.API_URL,
+  baseUrl: process.env.NEXT_PUBLIC_API_URL,
 };
 
 export { env };
