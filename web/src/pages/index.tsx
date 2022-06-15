@@ -5,6 +5,7 @@ import { Container, PredictForm } from "../components";
 
 const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const onFinish = async (props: any) => {
     setIsLoading(true);
     Object.keys(props).forEach((key) => {

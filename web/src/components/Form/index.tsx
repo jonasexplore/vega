@@ -1,11 +1,5 @@
-import { Button, Checkbox, Form, Slider } from "antd";
-import { For } from "react-extras";
-import {
-  CheckboxFieldProps,
-  checkboxFields,
-  SliderFieldProps,
-  sliderFields,
-} from "./fields";
+import { Button, Checkbox, Collapse, Form, Slider } from "antd";
+import { CheckboxFieldProps, SliderFieldProps, fields } from "./fields";
 
 type Props = {
   isLoading: boolean;
@@ -13,6 +7,7 @@ type Props = {
 };
 
 const { Item } = Form;
+const { Panel } = Collapse;
 
 export const PredictForm = ({ isLoading, onFinish }: Props) => {
   const renderSlideFields = (
@@ -36,15 +31,39 @@ export const PredictForm = ({ isLoading, onFinish }: Props) => {
   return (
     <Form
       style={{
-        width: "30%",
+        width: "50%",
         marginBottom: 32,
       }}
       onFinish={onFinish}
     >
-      <For of={sliderFields} render={renderSlideFields} />
-      <For of={checkboxFields} render={renderCheckboxFields} />
+      <Collapse>
+        {fields.map(({ fields, header, type }, index) => (
+          <Panel
+            header={header}
+            key={index}
+            style={{
+              width: "100%",
+            }}
+          >
+            <div>
+              {fields.map((field, index) =>
+                type === "slider"
+                  ? renderSlideFields(field as SliderFieldProps, index)
+                  : renderCheckboxFields(field as CheckboxFieldProps, index)
+              )}
+            </div>
+          </Panel>
+        ))}
+      </Collapse>
 
-      <Button htmlType="submit" type="primary" loading={isLoading}>
+      <Button
+        htmlType="submit"
+        type="primary"
+        loading={isLoading}
+        style={{
+          marginTop: 16,
+        }}
+      >
         Pesquisa
       </Button>
     </Form>
