@@ -38,9 +38,8 @@ def predict():
     })
 
     prediction = model.predict(df)
-    print(prediction)
 
-    return jsonify({"data": np.array(prediction).tolist()})
+    return jsonify(np.array(prediction).tolist())
 
 
 if __name__ == "__main__":
